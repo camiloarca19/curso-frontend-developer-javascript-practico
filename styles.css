@@ -246,7 +246,114 @@
     font-weight: bold;
     height: 50px;
   }
+ /* info product */
+ .product-info-aside{
+  width: 360px;
+  position:absolute;
+  right: 0px;
+  padding-bottom: 24px;
+  background-color: var(--white);
+  border-radius: 20px;
+  }
+
  
+ .product-info-aside .info-container{
+  width: 100%;
+
+ }
+
+.product-info-aside .product-image{
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 0 0 20px 20px;
+}
+  .product-info-aside .arrow-close{
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      
+  }
+  .product-info-aside .circle-close img{
+      background-color: white;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      
+      padding: 4px;
+
+  }
+  .product-info-aside .arrow-close:hover{
+      
+      cursor:pointer
+      
+  }
+  
+  .product-info-aside .text-container{
+      margin: 24px 24px 0 24px;
+  }
+  
+ .product-info-aside .title {
+  color: var(--black);
+  font-size: var(--md);
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 4px;
+
+ }
+ .product-info-aside .subtitle{
+  font-size: var(--md);
+  margin-top: 0;
+  margin-bottom: 36px;
+  color: var(--very-light-pink)
+
+ }
+ .product-info-aside .product-info-text{
+  font-size: var(--sm);
+  
+   
+  color:var(--very-light-pink);
+  margin-top: 0;
+  margin-bottom: 36px;
+  
+ }
+ .product-info-aside .primary-button{
+      background-color: var(--hospital-green);
+      border-radius: 8px;
+      border:none;
+      color:var(--white);
+      width: 100%;
+      cursor:pointer;
+      font-size: var(--md);
+      font-weight: bold;
+      height: 50px;
+      
+  }
+  .product-info-aside .add-to-cart-button{
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      
+  }
+    
+  .product-info-aside .dot{
+      cursor:pointer;
+      height: 8px;
+      width: 8px;
+      background-color: var(--very-light-pink);
+      border-radius: 50%;
+      margin: 0px 2px 0 4px;
+      display: inline-block;
+  }
+  .product-info-aside .dots span:nth-child(1){
+      background-color: var(--hospital-green);
+  }
+  .product-info-aside .dots{
+      text-align: center;
+  }
+  
   /* cards products container */
   .cards-container {
     padding:24px;
@@ -317,6 +424,15 @@
       width: 140px;
       height: 140px;
     }
+    .product-info-aside{
+      width: 100%;
+  }
+  .product-info-aside .product-image{
+      width: 100%;
+  }
+  .mobile-menu{
+    width: 100%;
+  }
 }
 @media (min-width: 641px){
     .mobile-menu{
