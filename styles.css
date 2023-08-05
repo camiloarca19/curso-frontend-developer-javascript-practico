@@ -13,7 +13,10 @@
     font-family: 'Quicksand', sans-serif;
   }
   .inactive{
-    display: none;
+    opacity:0;
+    transform:scale(0.1);
+    top:0;
+    will-change: transform;
   }
   nav {
     display: flex;
@@ -50,7 +53,7 @@
     border: 1px solid var(--white);
     padding: 8px;
     border-radius: 8px;
-    transition: all 0.3 ease;
+    transition: all 0.3s ease;
     margin: 0 5px;
   }
   .navbar-left ul li:hover a,
@@ -99,6 +102,7 @@
     border: 1px solid var(--very-light-pink);
     border-radius: 6px;
     padding: 20px 20px 0 20px;
+    transition:all 0.3s ease;
   }
   .desktop-menu ul {
     list-style: none;
@@ -172,12 +176,17 @@
   
   .product-detail {
     background-color: var(--white);
-    z-index:0;
+    z-index:1;
     width: 360px;
     padding: 0 24px;
     box-sizing: border-box;
     position: absolute;
     right: 0;
+    transition:all 0.3s ease;
+    border-radius: 20px;
+    padding-bottom: 24px;
+    
+    
   }
   .title-container {
     display: flex;
@@ -245,15 +254,21 @@
     font-size: var(--md);
     font-weight: bold;
     height: 50px;
+    transition: all 0.3s ease;
+  }
+  .primary-button:hover{
+    transform: scale(1.1);
   }
  /* info product */
  .product-info-aside{
+  z-index: 3;
   width: 360px;
   position:absolute;
   right: 0px;
   padding-bottom: 24px;
   background-color: var(--white);
   border-radius: 20px;
+  transition: all 0.2s ease;
   }
 
  
@@ -268,26 +283,26 @@
   object-fit: cover;
   border-radius: 0 0 20px 20px;
 }
-  .product-info-aside .arrow-close{
+  .product-info-aside .circle-close{
       position: absolute;
       top: 12px;
       left: 12px;
+      transition:all 0.5s ease;
       
-  }
-  .product-info-aside .circle-close img{
-      background-color: white;
+    }
+    
+    .product-info-aside .circle-close img{
+      background-color: var(--white);
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      
       padding: 4px;
-
-  }
-  .product-info-aside .arrow-close:hover{
+    }
+    .product-info-aside .circle-close:hover{
+      transform: scale(1.5);
+      cursor: pointer;
       
-      cursor:pointer
-      
-  }
+    }
   
   .product-info-aside .text-container{
       margin: 24px 24px 0 24px;
@@ -327,17 +342,21 @@
       font-size: var(--md);
       font-weight: bold;
       height: 50px;
-      
   }
+
   .product-info-aside .add-to-cart-button{
       font-family: 'Quicksand', sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 12px;
-      
+      transition: all 0.4s ease;
   }
     
+  .product-info-aside .add-to-cart-button:hover{
+    transform: scale(1.1);
+  }
+
   .product-info-aside .dot{
       cursor:pointer;
       height: 8px;
@@ -365,7 +384,11 @@
   .product-card {
     width: 240px;
   }
+  .product-card>img:hover {
+    transform: scale(1.1);
+  }
   .product-card img {
+    transition: all 0.3s ease;
     width: 240px;
     height: 240px;
     border-radius: 20px;
@@ -383,6 +406,10 @@
   .product-info figure img {
     width: 35px;
     height: 35px;
+  }
+  .product-info figure:hover img {
+    transform: scale(1.2);
+    cursor:pointer
   }
   .product-info div p:nth-child(1) {
     font-weight: bold;

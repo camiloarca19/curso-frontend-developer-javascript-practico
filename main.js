@@ -3,7 +3,9 @@ var desktopMenu = document.querySelector('.desktop-menu');
 var menu = document.querySelector('.menu')
 var mobileMenu = document.querySelector('.mobile-menu')
 var shopingCart = document.querySelector('.product-detail')
+var ordenContent = shopingCart.querySelector('.my-order-content-items')
 var imgShopingCart = document.querySelector('.navbar-shopping-cart')
+var totalOrder = document.querySelector('.total-order')
 const cardsContainer = document.querySelector('.cards-container')
 const productInfoAside = document.querySelector('.product-info-aside')
 const closeInfoAside = document.querySelector('.product-info-aside .circle-close')
@@ -11,12 +13,20 @@ const imgAside = productInfoAside.querySelector('.image-container>img')
 const asidePrice = productInfoAside.querySelector('.text-container .title')
 const asideTitle = productInfoAside.querySelector('.text-container .subtitle')
 const asideDescription = productInfoAside.querySelector('.text-container .product-info-text')
+const asideButton = document.querySelector('.add-to-cart-button')
+var asideImgLink = ''
+var priceAside = 0
+var titleAside = ''
 closeInfoAside.addEventListener('click',closeInfoAsideArrow)
 navEmail.addEventListener('click',toogleDesktopMenu);
 menu.addEventListener('click',toogleMobileMenu);
 imgShopingCart.addEventListener('click', toogleShopingCart)
+var totalPrice = 0;
+var productCount = 0;
+const navBarCount = document.querySelector('.navbar-shopping-cart>div');
+navBarCount.innerText = productCount
 
-
+asideButton.addEventListener('click',agregarProducto.bind(null,asideImgLink,titleAside,priceAside))
 
 function closeInfoAsideArrow(){
     productInfoAside.classList.add('inactive')
@@ -26,6 +36,9 @@ function toogleDesktopMenu(){
 desktopMenu.classList.toggle('inactive')
 if (!(shopingCart.classList.contains('inactive'))){
     shopingCart.classList.add('inactive')
+}
+if (!(productInfoAside.classList.contains('inactive'))){
+    productInfoAside.classList.add('inactive');
 }}
 function toogleMobileMenu(){
     mobileMenu.classList.toggle('inactive');
@@ -116,12 +129,45 @@ function openProductDetalAside(link,price,title,description){
     asidePrice.innerText = "$"+price +",00"
     asideTitle.innerText = title;
     asideDescription.innerText = description
+    asideImgLink = link
+    priceAside = price
+    titleAside = title
+    
+    
     
     
     if (!(shopingCart.classList.contains('inactive'))){
         shopingCart.classList.add('inactive');
     }
+    if (!(desktopMenu.classList.contains('inactive'))){
+        desktopMenu.classList.add('inactive');
+    }
 }
+
+
+function agregarProducto(imagen,nombre,precio){
+    const productAdd = document.createElement('div');
+    productAdd.classList.add('shopping-cart');
+
+    const figure = document.createElement('figure')
+    const img = document.createElement('img')
+    img.setAttribute('src',imagen)
+    figure.appendChild(img);
+    const productTitle = document.createElement('p')
+    productTitle.innerText= nombre
+    const productPrice = document.createElement('p')
+    productPrice.innerText = "$" + precio +".00"
+    const imgClose = document.createElement('img')
+    imgClose.setAttribute('src',"./icons/icon_close.png")
+
+    productAdd.append(figure,productTitle,productPrice,imgClose)
+    ordenContent.append(productAdd)
+    productCount ++
+    navBarCount.innerText = productCount
+    totalPrice += precio
+    totalOrder.innerText = "$"+ totalPrice +".00"
+}
+
 function renderProducts(arr){
 
     for (product of arr){
@@ -145,6 +191,7 @@ function renderProducts(arr){
     
         
         const productInfoFigure = document.createElement('figure');
+        productInfoFigure.addEventListener('click',agregarProducto.bind(null,product.image,product.name,product.price))
         const productInfoAdd = document.createElement('img')
         productInfoAdd.setAttribute('src','./icons/bt_add_to_cart.svg')
         
