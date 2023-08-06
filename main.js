@@ -14,10 +14,15 @@ const asidePrice = productInfoAside.querySelector('.text-container .title')
 const asideTitle = productInfoAside.querySelector('.text-container .subtitle')
 const asideDescription = productInfoAside.querySelector('.text-container .product-info-text')
 const asideButton = document.querySelector('.add-to-cart-button')
+const MyAccount = document.querySelector('#my-account')
+const MyAccount2 = document.querySelector('#my-account2')
+const ventanaMyAccount = document.querySelector('.My-account')
 var asideImgLink = ''
 var priceAside = 0
 var titleAside = ''
 closeInfoAside.addEventListener('click',closeInfoAsideArrow)
+MyAccount.addEventListener('click',habilitarMyaccount)
+MyAccount2.addEventListener('click',habilitarMyaccount)
 navEmail.addEventListener('click',toogleDesktopMenu);
 menu.addEventListener('click',toogleMobileMenu);
 imgShopingCart.addEventListener('click', toogleShopingCart)
@@ -26,7 +31,37 @@ var productCount = 0;
 const navBarCount = document.querySelector('.navbar-shopping-cart>div');
 navBarCount.innerText = productCount
 
-asideButton.addEventListener('click',agregarProducto.bind(null,asideImgLink,titleAside,priceAside))
+asideButton.addEventListener('click',addToCartButton)
+
+function habilitarMyaccount(){
+    ventanaMyAccount.classList.remove('inactive')
+    if (!(desktopMenu.classList.contains('inactive'))){
+        desktopMenu.classList.add('inactive')
+    }
+    if (!(mobileMenu.classList.contains('inactive'))){
+        mobileMenu.classList.add('inactive')
+    }
+}
+
+const padre = document.getElementById('mi-padre');
+    const hijo = document.getElementById('mi-hijo');
+
+    // Agrega un evento de escucha de clics en el elemento hijo
+    hijo.addEventListener('click', function(event) {
+        event.stopPropagation(); // Evita que el clic se propague al elemento padre
+    });
+
+    // Agrega un evento de captura para clics en todo el documento
+    document.addEventListener('click', function(event) {
+        // Comprueba si el clic ocurrió dentro del elemento hijo
+        if (hijo.contains(event.target)) {
+            // El clic ocurrió dentro del elemento hijo, así que no hacemos nada
+            return;
+        }
+
+        // El clic ocurrió fuera del elemento hijo, así que cerramos el elemento padre
+        padre.classList.add('inactive'); // Oculta el elemento padre (puedes ajustar esto según tus necesidades)
+    }, true);
 
 function closeInfoAsideArrow(){
     productInfoAside.classList.add('inactive')
@@ -107,6 +142,62 @@ const productList = [{
     price: 150,
     image: "https://images.pexels.com/photos/209716/pexels-photo-209716.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     description: "Step back in time with our Retro Phone. This vintage-inspired device pays homage to the iconic telephones of yesteryears. With its classic rotary dial and sturdy build, the Retro Phone adds a touch of nostalgia to your modern communication. Use it as a decorative piece or experience the joy of traditional conversations with this fully functional and elegantly designed phone. Our Retro Phone is a perfect blend of retro charm and practicality, making it a delightful addition to any vintage enthusiast's collection.",
+  },
+  {
+    name: "Chairs",
+    price: 45,
+    image:
+      "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    description:
+      "Elevate your home decor with these stylish and comfortable chairs. Crafted with high-quality materials, these chairs offer both elegance and durability. Perfect for dining rooms, living rooms, or home offices.",
+  },
+  {
+    name: "Polaroid",
+    price: 115,
+    image:
+      "https://images.pexels.com/photos/14906973/pexels-photo-14906973.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    description:
+      "Capture your precious moments in an instant with this classic Polaroid camera. Its vintage design and modern technology make it a perfect companion for parties, travels, and special occasions. Share memories, create art, and have fun with this amazing camera.",
+  },
+  {
+    name: "Cassette",
+    price: 14,
+    image:
+      "https://images.pexels.com/photos/1228497/pexels-photo-1228497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description:
+      "Rediscover the joy of music with these nostalgic cassette tapes. Compatible with vintage cassette players and modern tape-to-digital converters, these cassettes allow you to enjoy the warm sound of analog music. Perfect for music enthusiasts and collectors.",
+  },
+  {
+    name: "Music Player",
+    price: 185,
+    image:
+      "https://images.pexels.com/photos/1173651/pexels-photo-1173651.jpeg?auto=compress&cs=tinysrgb&w=600",
+    description:
+      "Immerse yourself in the world of music with this advanced music player. Its high-resolution display and superior audio quality deliver a premium listening experience. Carry your entire music library wherever you go and enjoy hours of uninterrupted melodies.",
+  },
+  {
+    name: "Travel Items",
+    price: 55,
+    image:
+      "https://images.pexels.com/photos/1051073/pexels-photo-1051073.jpeg?auto=compress&cs=tinysrgb&w=600",
+    description:
+      "Travel in style and convenience with this essential set of travel items. It includes a sleek travel backpack, a handy travel pillow, and a stylish passport holder. Stay organized and comfortable during your adventures around the world.",
+  },
+  {
+    name: "Car",
+    price: 31999,
+    image:
+      "https://images.pexels.com/photos/1209774/pexels-photo-1209774.jpeg?auto=compress&cs=tinysrgb&w=600",
+    description:
+      "Experience the thrill of the open road with this luxurious and powerful car. Its stunning design, cutting-edge technology, and smooth performance make it the perfect choice for car enthusiasts and those seeking unparalleled driving experiences.",
+  },
+  {
+    name: "Jeans",
+    price: 35,
+    image:
+      "https://images.pexels.com/photos/4210850/pexels-photo-4210850.jpeg?auto=compress&cs=tinysrgb&w=600",
+    description:
+      "Upgrade your wardrobe with these trendy and comfortable jeans. Made from premium denim, these jeans offer a perfect fit and timeless style. Whether you dress them up or down, they will be your go-to choice for any casual occasion.",
   },];
 
 
@@ -123,6 +214,10 @@ const productList = [{
 //                 </div>
 //             </div> -->
 
+function addToCartButton(){
+    agregarProducto(asideImgLink,titleAside,priceAside)
+}
+
 function openProductDetalAside(link,price,title,description){
     productInfoAside.classList.remove('inactive')
     imgAside.setAttribute('src',link);
@@ -135,7 +230,6 @@ function openProductDetalAside(link,price,title,description){
     
     
     
-    
     if (!(shopingCart.classList.contains('inactive'))){
         shopingCart.classList.add('inactive');
     }
@@ -143,9 +237,19 @@ function openProductDetalAside(link,price,title,description){
         desktopMenu.classList.add('inactive');
     }
 }
-
+function removeProduct(){
+    const padre = this.parentNode;
+    productCount --
+    navBarCount.innerText = productCount
+    const price2 = this.getAttribute('price')
+    totalPrice -= price2
+    totalOrder.innerText = "$"+ totalPrice +".00"
+    
+    padre.remove();
+}
 
 function agregarProducto(imagen,nombre,precio){
+    console.log(imagen, nombre,precio )
     const productAdd = document.createElement('div');
     productAdd.classList.add('shopping-cart');
 
@@ -159,6 +263,8 @@ function agregarProducto(imagen,nombre,precio){
     productPrice.innerText = "$" + precio +".00"
     const imgClose = document.createElement('img')
     imgClose.setAttribute('src',"./icons/icon_close.png")
+    imgClose.addEventListener('click',removeProduct)
+    imgClose.setAttribute('price',precio)
 
     productAdd.append(figure,productTitle,productPrice,imgClose)
     ordenContent.append(productAdd)
