@@ -17,6 +17,8 @@ const asideButton = document.querySelector('.add-to-cart-button')
 const MyAccount = document.querySelector('#my-account')
 const MyAccount2 = document.querySelector('#my-account2')
 const ventanaMyAccount = document.querySelector('.My-account')
+const closeArrowShopingCart = document.querySelector('.product-detail .title-container img')
+closeArrowShopingCart.addEventListener('click',toogleShopingCart)
 var asideImgLink = ''
 var priceAside = 0
 var titleAside = ''

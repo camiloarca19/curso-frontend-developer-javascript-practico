@@ -179,10 +179,11 @@
   .login {
     background-color: rgba(0,0,0,0.5);
     width: 100%;
-    position: absolute;
+    position: fixed;
     height: 100vh;
     display:flex;
     justify-content: center;
+    height: 100%;
   }
   
   .form-container {
@@ -253,7 +254,7 @@
     width: 360px;
     padding: 0 24px;
     box-sizing: border-box;
-    position: absolute;
+    position: fixed;
     right: 0;
     transition:all 0.3s ease;
     border-radius: 20px;
