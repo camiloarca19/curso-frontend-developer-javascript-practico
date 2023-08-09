@@ -19,6 +19,19 @@ const MyAccount2 = document.querySelector('#my-account2')
 const ventanaMyAccount = document.querySelector('.My-account')
 const closeArrowShopingCart = document.querySelector('.product-detail .title-container img')
 closeArrowShopingCart.addEventListener('click',toogleShopingCart)
+const discountCode = document.querySelector('#discount');
+var formulario = document.getElementById('miFormulario');
+
+formulario.addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevenir la recarga de la página
+  // Aquí puedes agregar el código para manejar el envío del formulario o cualquier acción que desees realizar
+});
+var descuento = 0;
+discountCode.addEventListener('change',function(){
+  descuento = Number(discountCode.value)
+  totalOrder.innerText = "$"+ totalPrice*(1 - (descuento/100)) +".00"
+})
+
 var asideImgLink = ''
 var priceAside = 0
 var titleAside = ''
@@ -244,8 +257,12 @@ function removeProduct(){
     productCount --
     navBarCount.innerText = productCount
     const price2 = this.getAttribute('price')
-    totalPrice -= price2
-    totalOrder.innerText = "$"+ totalPrice +".00"
+    if (descuento ==0){
+      totalPrice -= price2
+      totalOrder.innerText = "$"+ totalPrice +".00"}
+      else{
+        totalPrice -= price2
+      totalOrder.innerText = "$"+ totalPrice*(1 - (descuento/100)) +".00"}
     
     padre.remove();
 }
@@ -272,9 +289,15 @@ function agregarProducto(imagen,nombre,precio){
     ordenContent.append(productAdd)
     productCount ++
     navBarCount.innerText = productCount
+    if (descuento ==0){
     totalPrice += precio
-    totalOrder.innerText = "$"+ totalPrice +".00"
-}
+    totalOrder.innerText = "$"+ totalPrice +".00"}
+    else{
+      totalPrice += precio
+    totalOrder.innerText = "$"+ totalPrice*(1 - (descuento/100)) +".00"}
+    
+  }
+
 
 function renderProducts(arr){
 
